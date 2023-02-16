@@ -30,7 +30,7 @@ def load_data(league, season):
   if selected_season == '2020/2021':
     season = '2021'
   if selected_season == '2019/2020':
-    season = '1920'
+    season = '2020'
     
   url = "https://www.football-data.co.uk/mmz4281/"+season+"/"+league+".csv"
   data = pd.read_csv(url)
