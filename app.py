@@ -9,7 +9,7 @@ st.sidebar.header("Leagues")
 selected_league = st.sidebar.selectbox('League',['England','Germany','Italy','Spain','France'])
 
 st.sidebar.header("Season")
-selected_season = st.sidebar.selectbox('Season', ['2021/2022','2020/2021','2019/2020'])
+selected_season = st.sidebar.selectbox('Season', ['2022/2021','2021/2020','2020/2019'])
 
 # WebScraping Football Data
 def load_data(league, season):
@@ -44,7 +44,7 @@ st.dataframe(df)
 def filedownload(df):
     csv = df.to_csv(index=False)
     b64 = base64.b64encode(csv.encode()).decode()
-    href = f'<a href="data:file/csv;base64,{b64}" download="Base_de_Dados.csv">Download CSV File - Cap Cruz</a>'
+    href = f'<a href="data:file/csv;base64,{b64}" download="Base_de_Dados.csv">Download CSV File</a>'
     return href
 
 st.markdown(filedownload(df), unsafe_allow_html=True)
