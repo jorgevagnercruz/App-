@@ -24,7 +24,7 @@ def load_data(league, season):
     league = 'SP1'
   if selected_league == 'France':
     league = 'F1'
-   
+  
   if selected_season == '2021/2022':
     season = '2122'
   if selected_season == '2020/2021':
@@ -44,7 +44,7 @@ st.dataframe(df)
 def filedownload(df):
     csv = df.to_csv(index=False)
     b64 = base64.b64encode(csv.encode()).decode()
-    href = f'<a href="data:file/csv;base64,{b64}" download="Base_de_Dados.csv">Download CSV File</a>'
+    href = f'<a href="data:file/csv;base64,{b64}" download="Base_de_Dados.csv">Download CSV File - Cap Cruz</a>'
     return href
 
 st.markdown(filedownload(df), unsafe_allow_html=True)
