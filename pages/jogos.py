@@ -8,4 +8,4 @@ st.title("Jogos do Dia")
 
 dia = st.date_input(
   "Data de Análise", 
-  date.today[])
+  date.today())
