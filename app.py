@@ -48,4 +48,3 @@ def filedownload(df):
     return href
 
 st.markdown(filedownload(df), unsafe_allow_html=True)
- 
