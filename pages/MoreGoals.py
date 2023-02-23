@@ -58,4 +58,4 @@ def load_data(league):
 df1 = df.groupby(['Home']).get_group(team)
 df2 = df.groupby(['Away']).get_group(team)
 
-df1
+st.dataframe(df1)
