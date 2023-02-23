@@ -4,7 +4,7 @@ import numpy as np
 import datetime
 from datetime import date
 
-st.title("Times com mais gols em casa")
+st.title("Times Brasileiros com mais gols em casa")
 
 def load_data_jogos():
     data_jogos = pd.read_csv("https://www.football-data.co.uk/new/BRA.csv")
@@ -38,24 +38,4 @@ df['p(H)'] = Prob_Home()
 df['p(D)'] = Prob_Draw()
 df['p(A)'] = Prob_Away()
 
-st.sidebar.header("Times")
-selected_league = st.sidebar.selectbox('Times',df['Home'])
-
-# WebScraping Football Data
-def load_data(league):
-  
-  if selected_league == 'São Paulo':
-    team = 'Sao Paulo'
-  if selected_league == 'Palmeiras':
-    team = 'Palmeiras'
-  if selected_league == 'Flamengo':
-    team = 'Flamengo'
-  if selected_league == 'Santos':
-    team = 'Santos'
-  if selected_league == 'Vitória':
-    team = 'Vitoria'
-
-df1 = df.groupby(['Home']).get_group(team)
-df2 = df.groupby(['Away']).get_group(team)
-
-st.dataframe(df1)
+df
