@@ -19,7 +19,7 @@ df_jogos = load_data_jogos()
 
 st.dataframe(df_jogos)
 
-
+df = df_jogos
 df = df[['Season','Date','Home','Away','HG','AG','Res','PH','PD','PA']]
 df.columns = ['Season','Date','Home','Away','Goals_H','Goals_A','Result','Odds_H','Odds_D','Odds_A']
 
