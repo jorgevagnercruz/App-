@@ -2,53 +2,54 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import base64
-# Importando as Bibliotecas
-from google.colab import data_table
-data_table.enable_dataframe_formatter()
 
-
+# DataFrame do Campeonato Brasileiro
+df = pd.read_excel("https://www.football-data.co.uk/new/BRA.xlsx")
 st.title("Web App Football Data")
 
-st.sidebar.header("Leagues")
-selected_league = st.sidebar.selectbox('League',['England','Germany','Italy','Spain','France'])
+df = df[['Season','Date','Home','Away','HG','AG','Res','PH','PD','PA']]
+df.columns = ['Season','Date','Home','Away','Goals_H','Goals_A','Result','Odds_H','Odds_D','Odds_A']
 
-st.sidebar.header("Season")
-selected_season = st.sidebar.selectbox('Season', ['2021/2022','2020/2021','2019/2020'])
+flt = df.Season == 2022
+df = df[flt]
+
+def Prob_Home():
+    P_H = 1/df.Odds_H
+    return P_H
+
+def Prob_Draw():
+    P_D = 1/df.Odds_D
+    return P_D
+
+def Prob_Away():
+    P_A = 1/df.Odds_A
+    return P_A
+  
+df['p(H)'] = Prob_Home()
+df['p(D)'] = Prob_Draw()
+df['p(A)'] = Prob_Away()
+
+st.sidebar.header("Times")
+selected_league = st.sidebar.selectbox('São Paulo',['Palmeiras','Flamengo','Santos','Vitória'])
 
 # WebScraping Football Data
-def load_data(league, season):
+def load_data(league):
   
-  if selected_league == 'England':
-    league = 'E0'
-  if selected_league == 'Germany':
-    league = 'D1'
-  if selected_league == 'Italy':
-    league = 'I1'
-  if selected_league == 'Spain':
-    league = 'SP1'
-  if selected_league == 'France':
-    league = 'F1'
+  if selected_league == 'São Paulo':
+    team = 'Sao Paulo'
+  if selected_league == 'Palmeiras':
+    team = 'Palmeiras'
+  if selected_league == 'Flamengo':
+    team = 'Flamengo'
+  if selected_league == 'Santos':
+    team = 'Santos'
+  if selected_league == 'Vitória':
+    team = 'Vitoria'
   
-  if selected_season == '2021/2022':
-    season = '2122'
-  if selected_season == '2020/2021':
-    season = '2021'
-  if selected_season == '2019/2020':
-    season = '1920'
-    
   url = "https://www.football-data.co.uk/mmz4281/"+season+"/"+league+".csv"
   data = pd.read_csv(url)
   return data
 
-df = load_data(selected_league, selected_season)
+df1 = df.groupby(['Home']).get_group(team)
+df2 = df.groupby(['Away']).get_group(team)
 
-st.subheader("Dataframe: "+selected_league)
-st.dataframe(df)
-
-def filedownload(df):
-    csv = df.to_csv(index=False)
-    b64 = base64.b64encode(csv.encode()).decode()
-    href = f'<a href="data:file/csv;base64,{b64}" download="Base_de_Dados.csv">Download CSV File</a>'
-    return href
-
-st.markdown(filedownload(df), unsafe_allow_html=True)
