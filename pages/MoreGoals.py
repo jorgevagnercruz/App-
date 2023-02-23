@@ -2,6 +2,13 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import base64
+# Importando as Bibliotecas
+import pandas as pd
+from google.colab import data_table
+data_table.enable_dataframe_formatter()
+import warnings
+warnings.filterwarnings('ignore')
+
 
 st.title("Web App Football Data")
 
