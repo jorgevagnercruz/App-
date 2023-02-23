@@ -11,7 +11,7 @@ dia = st.date_input(
     date.today())
 
 def load_data_jogos():
-    data_jogos = pd.read_excel("https://www.football-data.co.uk/new/BRA.csv")
+    data_jogos = pd.read_csv("https://www.football-data.co.uk/new/BRA.csv")
     
     return data_jogos
 
