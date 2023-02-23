@@ -20,17 +20,6 @@ df_jogos = load_data_jogos()
 st.dataframe(df_jogos)
 
 
-
-import streamlit as st
-import pandas as pd
-import numpy as np
-import base64
-
-st.title("Web App Football Data")
-
-# DataFrame do Campeonato Brasileiro
-df = pd.read_excel("https://www.football-data.co.uk/new/BRA.xlsx")
-
 df = df[['Season','Date','Home','Away','HG','AG','Res','PH','PD','PA']]
 df.columns = ['Season','Date','Home','Away','Goals_H','Goals_A','Result','Odds_H','Odds_D','Odds_A']
 
