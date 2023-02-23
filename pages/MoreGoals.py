@@ -6,10 +6,6 @@ from datetime import date
 
 st.title("Times com mais gols em casa")
 
-dia = st.date_input(
-    "Data de Análise",
-    date.today())
-
 def load_data_jogos():
     data_jogos = pd.read_csv("https://www.football-data.co.uk/new/BRA.csv")
     
