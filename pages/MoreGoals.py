@@ -43,7 +43,7 @@ df['p(D)'] = Prob_Draw()
 df['p(A)'] = Prob_Away()
 
 st.sidebar.header("Times")
-selected_league = st.sidebar.selectbox('São Paulo',['Palmeiras','Flamengo','Santos','Vitória'])
+selected_league = st.sidebar.selectbox('Times',df['Home'])
 
 # WebScraping Football Data
 def load_data(league):
