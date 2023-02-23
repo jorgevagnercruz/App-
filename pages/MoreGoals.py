@@ -3,9 +3,10 @@ import pandas as pd
 import numpy as np
 import base64
 
+st.title("Web App Football Data")
+
 # DataFrame do Campeonato Brasileiro
 df = pd.read_excel("https://www.football-data.co.uk/new/BRA.xlsx")
-st.title("Web App Football Data")
 
 df = df[['Season','Date','Home','Away','HG','AG','Res','PH','PD','PA']]
 df.columns = ['Season','Date','Home','Away','Goals_H','Goals_A','Result','Odds_H','Odds_D','Odds_A']
@@ -45,11 +46,8 @@ def load_data(league):
     team = 'Santos'
   if selected_league == 'Vitória':
     team = 'Vitoria'
-  
-  url = "https://www.football-data.co.uk/mmz4281/"+season+"/"+league+".csv"
-  data = pd.read_csv(url)
-  return data
 
 df1 = df.groupby(['Home']).get_group(team)
 df2 = df.groupby(['Away']).get_group(team)
 
+df1
