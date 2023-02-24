@@ -4,7 +4,7 @@ import numpy as np
 import datetime
 from datetime import date
 
-st.title("Times Brasileiros com mais gols em casa")
+st.title("Times Brasileiros com mais gols")
 
 def load_data_jogos():
     data_jogos = pd.read_csv("https://www.football-data.co.uk/new/BRA.csv")
